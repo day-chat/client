@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   user: null,
   other_users: [],
+  error: null
 };
 
 export const appSlice = createSlice({
@@ -17,12 +18,19 @@ export const appSlice = createSlice({
     },
     getOtherUsers: (state, action) =>{
       state.other_users = action.payload
+    },
+    getError: (state, action) => {
+      state.error = action.payload
+    },
+    clearError: (state) => {
+      state.error = null
     }
+
   },
   
 });
 
-export const { login, logout, getOtherUsers } = appSlice.actions;
+export const { login, logout, getOtherUsers, getError, clearError } = appSlice.actions;
 
 // export const selectCount = (state) => state.counter.value;
 
