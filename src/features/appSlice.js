@@ -12,25 +12,24 @@ export const appSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.user = action.payload
+      state.error = null
     }, 
     logout: (state) =>{
       state.user = null
     },
     getOtherUsers: (state, action) =>{
       state.other_users = action.payload
+      state.error = null
     },
     getError: (state, action) => {
       state.error = action.payload
-    },
-    clearError: (state) => {
-      state.error = null
     }
-
+   
   },
   
 });
 
-export const { login, logout, getOtherUsers, getError, clearError } = appSlice.actions;
+export const { login, logout, getOtherUsers, getError } = appSlice.actions;
 
 // export const selectCount = (state) => state.counter.value;
 

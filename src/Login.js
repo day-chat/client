@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
-import { login } from './features/appSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { getError, login } from './features/appSlice'
 import { useNavigate } from 'react-router-dom'
 
 function Login() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { error } = useSelector(state => state.app)
 
     const [input, setinput] = useState({
         email: "",
@@ -36,11 +37,12 @@ function Login() {
             dispatch(login(res.data))
             navigate("/")
 
-        }).catch(err => console.log(err.response.data))
+        }).catch(err => dispatch(getError(err.response.data)) )
     } 
 
     return (
         <div>
+            { error && <p className='error'>{error?.error}</p> }
             <form>
                 <div>
                     <h4>Email</h4>

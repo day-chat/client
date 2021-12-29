@@ -9,7 +9,7 @@ import Login from './Login';
 import Register from './Register';
 import './App.css';
 
-import { getOtherUsers, login, logout } from './features/appSlice'
+import { getError, getOtherUsers, login, logout } from './features/appSlice'
 
 function App() {
   // const socket = useRef()
@@ -52,7 +52,7 @@ function App() {
         
     }).then((res) => {
         dispatch(getOtherUsers(res.data))
-    }).catch(err => console.log(err.response.data))
+    }).catch(err => dispatch(getError(err.response.data)) )
   
   }
 
