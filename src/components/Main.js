@@ -6,7 +6,7 @@ import Welcome from './Welcome'
 
 function Main() {
     return (
-        <div className="bg-gray-100 h-screen w-screen flex flex-col">
+        <div className="bg-slate-100 h-screen w-screen flex flex-col">
             <Navbar />
             
             <div className='w-full flex-grow flex'>
