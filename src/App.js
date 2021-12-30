@@ -10,12 +10,13 @@ import Register from './Register';
 import './App.css';
 
 import { getError, getOtherUsers, login, logout } from './features/appSlice'
+import Main from './components/Main';
 
 function App() {
   // const socket = useRef()
   const { user } = useSelector(state => state.app)
   const dispatch = useDispatch()
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
 
   // useEffect(() => {
@@ -36,7 +37,8 @@ function App() {
 
     }).catch(err => {
       dispatch(logout())
-      
+      dispatch(getError(err.response.data))
+
       if(location.pathname !== '/register'){
         navigate("/login")
       }
@@ -61,32 +63,16 @@ function App() {
     getUsers()
   }, [])
 
-  const handleLogout = async () =>{
-    await axios({
-      method: 'get',
-      url: 'http://localhost:3205/api/logout',
-      withCredentials: true,
-    
-    }).then((res) => {
-      dispatch(logout())
-      navigate('/login')
-    }).catch(err => console.log(err.response.data?.error))
-  }
 
   return (
     <>
       {!user ? 
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login navigate={navigate} />} />
           <Route path="/register" element={<Register />} />
         </Routes>
         :
-        (
-          <div className="bg-green-300 h-screen w-screen">
-            sdfg
-            <button onClick={handleLogout}>logout</button>
-          </div>
-        )
+        <Main />
       }
     </>
   )
