@@ -26,7 +26,7 @@ function Navbar() {
     
     return (
         <div className='bg-white w-full shadow-sm flex px-3 items-center md:justify-center'>
-            <img  src={daychat} className="h-14 md:h-20" />
+            <img  src={daychat} className="h-14 md:h-16 object-contain" />
 
             <div className='flex-grow focus-within:shadow-lg flex md:max-w-lg items-center mr-2 bg-zinc-200 rounded-md px-2 py-1'>
                 <Button
